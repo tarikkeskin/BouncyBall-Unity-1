@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: backgorund
+    uniqueID: 2071141247
+    locked: 0
+  - name: pota
+    uniqueID: 3513013763
+    locked: 0
+  - name: top
+    uniqueID: 2837586501
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
