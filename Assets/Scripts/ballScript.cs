@@ -11,18 +11,29 @@ public class ballScript : MonoBehaviour
 
     public float releaseTime = .15f;
 
+    Vector2 baslangicPos,random;
+
+    void Start()
+    {   
+        rb=GetComponent<Rigidbody2D>();
+        baslangicPos=transform.position;
+
+    }
+
     void Update()
     {
         if(isPressed){
             
             rb.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-
         }
     }
     void OnMouseDown(){
         isPressed =true;
         rb.isKinematic = true;
+        rb.constraints=RigidbodyConstraints2D.None;
+
+        
         //Debug.Log("Mouse click");
     }
     void OnMouseUp (){
@@ -36,6 +47,29 @@ public class ballScript : MonoBehaviour
     {
         yield return new WaitForSeconds(releaseTime);
 
-        GetComponent<SpringJoint2D>().enabled=false;    
+        GetComponent<SpringJoint2D>().enabled=false;  
+        //rb.constraints=RigidbodyConstraints2D.None;  
+    }
+
+    void OnCollisionEnter2D(Collision2D col){
+
+        if(col.gameObject.tag=="assagı"){
+            Debug.Log("collison");
+
+            random=new Vector2(Random.Range(-7,-3),Random.Range(2,5));
+            rb.constraints=RigidbodyConstraints2D.FreezeAll;
+            //rb.constraints=RigidbodyConstraints2D.None;  
+            GetComponent<SpringJoint2D>().enabled=true;
+
+            rb.bodyType=RigidbodyType2D.Kinematic;
+            transform.position=random;
+            baslangicPos=random;
+        }
+
+    }
+    private void OnTriggerEnter2D()
+    {
+        Debug.Log("sdf");
+        scoreScript.scoreValue +=1;
     }
 }
