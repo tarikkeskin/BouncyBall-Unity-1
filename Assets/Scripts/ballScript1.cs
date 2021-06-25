@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ballScript : MonoBehaviour
+public class ballScript1 : MonoBehaviour
 {
-
-    public Rigidbody2D rb;
+     public Rigidbody2D rb;
 
     private bool isPressed = false;
 
@@ -54,9 +54,9 @@ public class ballScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col){
 
         if(col.gameObject.tag=="assagı"){
-            Debug.Log("collison");
+           // Debug.Log("collison");
 
-            random=new Vector2(Random.Range(-9,-8),Random.Range(2,4));
+            random=new Vector2(-8,6);
             rb.constraints=RigidbodyConstraints2D.FreezeAll;
             //rb.constraints=RigidbodyConstraints2D.None;  
             GetComponent<SpringJoint2D>().enabled=true;
@@ -69,7 +69,8 @@ public class ballScript : MonoBehaviour
     }
     private void OnTriggerEnter2D()
     {
-        Debug.Log("sdf");
+        //Debug.Log("trigger");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         scoreScript.scoreValue +=1;
     }
 }
