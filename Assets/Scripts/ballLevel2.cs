@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ballScript : MonoBehaviour
+public class ballLevel2 : MonoBehaviour
 {
 
     public Rigidbody2D rb;
@@ -57,7 +57,7 @@ public class ballScript : MonoBehaviour
         if(col.gameObject.tag=="assagı"){
             //Debug.Log("collison");
 
-            random=new Vector2(Random.Range(-9,-8),Random.Range(2,4));
+            random=new Vector2(-6,-4);
             rb.constraints=RigidbodyConstraints2D.FreezeAll;
             //rb.constraints=RigidbodyConstraints2D.None;  
             GetComponent<SpringJoint2D>().enabled=true;
